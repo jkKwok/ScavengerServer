@@ -1,0 +1,133 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.scavenger.client.CommentActivity" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <LinearLayout
+                    android:id="@+id/linearLayout1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/pagename"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="marquee"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:freezesText="true"
+                        android:gravity="center"
+                        android:lines="1"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true"
+                        android:text="PageName"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="#DC143C" />
+
+                    <TextView
+                        android:id="@+id/attendanceview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="AttendanceView"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/button1"
+                    android:layout_width="100dp"
+                    android:layout_height="55dp"
+                    android:layout_alignParentRight="true"
+                    android:onClick="back"
+                    android:text="Back"
+                    android:textColor="#FFFFFF" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:minLines="1"
+                android:text="Comments"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="#efefef"
+                android:gravity="bottom"
+                android:orientation="vertical" >
+
+                <ListView
+                    android:id="@+id/msgview"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:divider="@null"
+                    android:stackFromBottom="true"
+                    android:isScrollContainer="false"
+                    android:transcriptMode="alwaysScroll" >
+                </ListView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="3"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/msg"
+                        android:layout_width="220dp"
+                        android:layout_height="50dp"
+                        android:paddingBottom="0dp"
+                        android:layout_weight="2"/>
+
+                    <Button
+                        android:id="@+id/send"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:paddingTop="0dp"
+                        android:minLines="1"
+                        android:minHeight="15dp"
+                        android:text="Send" 
+                        android:layout_weight="1"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
