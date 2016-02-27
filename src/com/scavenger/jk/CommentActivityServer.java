@@ -88,8 +88,6 @@ public class CommentActivityServer extends AppCompatActivity {
 				listView.setSelection(chatArrayAdapter.getCount() - 1);
 			}
 		});
-		//////////////////
-		new GCMRequest().execute();
 	}
 
 	private ChatArrayAdapter chatArrayAdapter;
@@ -114,74 +112,5 @@ public class CommentActivityServer extends AppCompatActivity {
 
 	protected void onDestroy() {
 		super.onDestroy();
-	}
-
-	private class GCMRequest extends AsyncTask<Void, Void, String> {
-		protected String doInBackground(Void... voids) {
-
-			final String API_KEY = "AIzaSyBv9caj2tnuTPzkDd6t2VpgJfyv8sIkWsA"; // An API key saved on the app server
-											// that gives the app server
-											// authorized access to Google
-											// services
-			final String CLIENT_REG_ID = "84154074811"; // An ID issued by the GCM
-												// connection servers to the
-												// client app that allows it to
-												// receive messages
-			final String postData = "{ \"registration_ids\": [ \"" + CLIENT_REG_ID + "\" ], "
-					+ "\"delay_while_idle\": true, " + "\"data\": {\"tickerText\":\"My Ticket\", "
-					+ "\"contentTitle\":\"My Title\", " + "\"message\": \"Test GCM message from GCMServer-Android\"}}";
-
-			try {
-				URL url = new URL("https://android.googleapis.com/gcm/send");
-				HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-				urlConnection.setDoInput(true);
-				urlConnection.setDoOutput(true);
-				urlConnection.setRequestMethod("POST");
-				urlConnection.setRequestProperty("Content-Type", "application/json");
-				urlConnection.setRequestProperty("Authorization", "key=" + API_KEY);
-
-				OutputStream outputStream = new BufferedOutputStream(urlConnection.getOutputStream());
-				BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream, "utf-8"));
-				writer.write(postData);
-				writer.flush();
-				writer.close();
-				outputStream.close();
-
-				int responseCode = urlConnection.getResponseCode();
-				InputStream inputStream;
-				if (responseCode < HttpURLConnection.HTTP_BAD_REQUEST) {
-					inputStream = urlConnection.getInputStream();
-				} else {
-					inputStream = urlConnection.getErrorStream();
-				}
-				BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-				String temp, response = "";
-				while ((temp = bufferedReader.readLine()) != null) {
-					response += temp;
-				}
-				Log.v("response code", Integer.toString(responseCode));
-				Log.v("response message", response);
-				
-				return response;
-			} catch (IOException e) {
-				e.printStackTrace();
-				return e.toString();
-			}
-		}
-
-		@Override
-		protected void onPostExecute(String message) {
-			super.onPostExecute(message);
-
-			if (info != null) {
-				try {
-					JSONObject jsonObject = new JSONObject(message);
-					info.setText(jsonObject.toString(5));
-				} catch (JSONException e) {
-					e.printStackTrace();
-					info.setText(e.toString());
-				}
-			}
-		}
 	}
 }
