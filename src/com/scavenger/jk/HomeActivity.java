@@ -131,9 +131,9 @@ public class HomeActivity extends ActionBarActivity {
 	}
 
 	public class EmailAccount {
-		public String urlServer = "gmail.com";
-		public String username = "recordurfkeeper";
-		public String password = "314white159";
+		public String urlServer = "";
+		public String username = "";
+		public String password = "";
 		public String emailAddress;
 
 		public EmailAccount() {
